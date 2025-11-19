@@ -1,73 +1,179 @@
-function App() {
+import React from 'react'
+import { Routes, Route, Link } from 'react-router-dom'
+import Layout from './components/Layout'
+import Hero from './components/Hero'
+import PlatePage from './components/PlatePage'
+import Glossary from './components/Glossary'
+import Quiz from './components/Quiz'
+import Team from './components/Team'
+import Resources from './components/Resources'
+
+const plateData = {
+  pacific: {
+    name: 'Pacific Plate',
+    description: 'Earth’s largest plate, underlying the Pacific Ocean. It features the Ring of Fire with intense volcanic and earthquake activity along its margins.',
+    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    facts: [
+      'Covers roughly one-third of Earth’s surface.',
+      'Bordered by numerous subduction zones forming the Ring of Fire.',
+      'Moves northwest relative to the North American Plate.'
+    ],
+    events: [
+      '2011 Tōhoku earthquake and tsunami (Japan).',
+      '1960 Valdivia earthquake (Chile), the largest instrumentally recorded earthquake.'
+    ]
+  },
+  eurasian: {
+    name: 'Eurasian Plate',
+    description: 'Spans Europe and much of Asia; collides with the Indian portion of the Indo‑Australian Plate forming the Himalayas.',
+    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    facts: [
+      'Hosts complex boundaries from the Atlantic to the Pacific.',
+      'Includes both continental and oceanic crust segments.',
+      'Active collision with Indian Plate uplifts the Himalayas.'
+    ],
+    events: [
+      'Historic earthquakes in Turkey and Iran along the Alpine–Himalayan belt.',
+      'Ongoing uplift of the Tibetan Plateau.'
+    ]
+  },
+  'north-american': {
+    name: 'North American Plate',
+    description: 'Extends across North America and parts of the Atlantic seafloor; interacts with the Pacific Plate along the San Andreas Fault.',
+    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    facts: [
+      'Transform boundary with the Pacific Plate (San Andreas Fault).',
+      'Divergent boundary with Eurasian Plate at the Mid‑Atlantic Ridge.',
+      'Includes the Caribbean and Juan de Fuca interactions along its margins.'
+    ],
+    events: [
+      '1906 San Francisco earthquake.',
+      '2020 Puerto Rico earthquake sequence.'
+    ]
+  },
+  african: {
+    name: 'African Plate',
+    description: 'Covers Africa and surrounding oceanic crust; features the East African Rift where the continent is slowly splitting.',
+    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    facts: [
+      'Hosts the East African Rift System (divergent).',
+      'Convergent boundaries with Eurasian Plate forming the Mediterranean orogens.',
+      'Includes hotspots such as the Canary and Réunion.'
+    ],
+    events: [
+      'Historic Mediterranean quakes (e.g., 1908 Messina).',
+      'Volcanism along the East African Rift (Nyiragongo, Erta Ale).'
+    ]
+  },
+  'indo-australian': {
+    name: 'Indo‑Australian Plate',
+    description: 'A major plate comprising the Indian and Australian segments; collision with Eurasia raised the Himalayas and Tibetan Plateau.',
+    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    facts: [
+      'Subduction along the Sunda Trench near Indonesia.',
+      'Hosts powerful megathrust earthquakes.',
+      'Moves generally northward relative to Eurasia.'
+    ],
+    events: [
+      '2004 Indian Ocean earthquake and tsunami.',
+      '2015 Nepal earthquake (Gorkha).'
+    ]
+  },
+  antarctic: {
+    name: 'Antarctic Plate',
+    description: 'Centered on Antarctica and surrounded by mid‑ocean ridges; one of the most stable plates, moving slowly outward from the continent.',
+    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    facts: [
+      'Encircled by spreading centers (divergent boundaries).',
+      'Interacts with the Scotia and South American Plates in the south Atlantic.',
+      'Cold climate limits on‑land erosion compared with other continents.'
+    ],
+    events: [
+      'Frequent small to moderate offshore earthquakes.',
+      'Volcanic activity at Mount Erebus (Ross Island).'
+    ]
+  }
+}
+
+function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)]"></div>
-
-      <div className="relative min-h-screen flex items-center justify-center p-8">
-        <div className="max-w-2xl w-full">
-          {/* Header with Flames icon */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center mb-6">
-              <img
-                src="/flame-icon.svg"
-                alt="Flames"
-                className="w-24 h-24 drop-shadow-[0_0_25px_rgba(59,130,246,0.5)]"
-              />
-            </div>
-
-            <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">
-              Flames Blue
-            </h1>
-
-            <p className="text-xl text-blue-200 mb-6">
-              Build applications through conversation
-            </p>
+    <Layout>
+      <div className="space-y-8">
+        <Hero />
+        <section className="grid md:grid-cols-3 gap-4">
+          <div className="rounded-xl border border-amber-400/20 p-4 bg-slate-900/40">
+            <h3 className="font-semibold text-amber-300">What are tectonic plates?</h3>
+            <p className="text-sm text-slate-300 mt-1">Earth’s lithosphere is broken into moving slabs called tectonic plates. Driven by heat within the planet, these plates interact at boundaries to build mountains, open oceans, and trigger earthquakes and volcanoes.</p>
           </div>
-
-          {/* Instructions */}
-          <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8 shadow-xl mb-6">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                1
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Describe your idea</h3>
-                <p className="text-blue-200/80 text-sm">Use the chat panel on the left to tell the AI what you want to build</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                2
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Watch it build</h3>
-                <p className="text-blue-200/80 text-sm">Your app will appear in this preview as the AI generates the code</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                3
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Refine and iterate</h3>
-                <p className="text-blue-200/80 text-sm">Continue the conversation to add features and make changes</p>
-              </div>
-            </div>
+          <div className="rounded-xl border border-amber-400/20 p-4 bg-slate-900/40">
+            <h3 className="font-semibold text-amber-300">Why they matter</h3>
+            <p className="text-sm text-slate-300 mt-1">Plate tectonics explains the distribution of continents, ocean basins, and many natural hazards. Understanding plates helps us prepare for risks and appreciate Earth’s dynamic nature.</p>
           </div>
-
-          {/* Footer */}
-          <div className="text-center">
-            <p className="text-sm text-blue-300/60">
-              No coding required • Just describe what you want
-            </p>
+          <div className="rounded-xl border border-amber-400/20 p-4 bg-slate-900/40">
+            <h3 className="font-semibold text-amber-300">Explore the site</h3>
+            <p className="text-sm text-slate-300 mt-1">Browse major plates, open the glossary for quick definitions, test yourself with the quiz, and meet the team behind this edition.</p>
           </div>
-        </div>
+        </section>
       </div>
-    </div>
+    </Layout>
   )
 }
 
-export default App
+function PlateRoute({ id }) {
+  const data = plateData[id]
+  return (
+    <Layout>
+      <PlatePage {...data} />
+    </Layout>
+  )
+}
+
+function GlossaryPage() {
+  return (
+    <Layout>
+      <Glossary />
+    </Layout>
+  )
+}
+
+function QuizPage() {
+  return (
+    <Layout>
+      <Quiz />
+    </Layout>
+  )
+}
+
+function TeamPage() {
+  return (
+    <Layout>
+      <Team />
+    </Layout>
+  )
+}
+
+function ResourcesPage() {
+  return (
+    <Layout>
+      <Resources />
+    </Layout>
+  )
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/plates/pacific" element={<PlateRoute id="pacific" />} />
+      <Route path="/plates/eurasian" element={<PlateRoute id="eurasian" />} />
+      <Route path="/plates/north-american" element={<PlateRoute id="north-american" />} />
+      <Route path="/plates/african" element={<PlateRoute id="african" />} />
+      <Route path="/plates/indo-australian" element={<PlateRoute id="indo-australian" />} />
+      <Route path="/plates/antarctic" element={<PlateRoute id="antarctic" />} />
+      <Route path="/glossary" element={<GlossaryPage />} />
+      <Route path="/quiz" element={<QuizPage />} />
+      <Route path="/team" element={<TeamPage />} />
+      <Route path="/resources" element={<ResourcesPage />} />
+    </Routes>
+  )
+}
