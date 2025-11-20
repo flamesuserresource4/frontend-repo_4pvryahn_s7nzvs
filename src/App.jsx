@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import Hero from './components/Hero'
 import PlatePage from './components/PlatePage'
@@ -12,85 +12,100 @@ const plateData = {
   pacific: {
     name: 'Pacific Plate',
     description: 'Earth’s largest plate, underlying the Pacific Ocean. It features the Ring of Fire with intense volcanic and earthquake activity along its margins.',
-    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?q=80&w=1600&auto=format&fit=crop',
     facts: [
-      'Covers roughly one-third of Earth’s surface.',
-      'Bordered by numerous subduction zones forming the Ring of Fire.',
-      'Moves northwest relative to the North American Plate.'
+      'Covers roughly one-third of Earth’s surface and is predominantly oceanic crust.',
+      'Bordered by numerous subduction zones forming the Ring of Fire (Aleutians, Japan, Tonga–Kermadec, Andes).',
+      'Moves northwest relative to the North American Plate at centimeters per year, recorded by GPS.',
+      'Hosts major transform faults like the Queen Charlotte and the San Andreas system (indirect interaction).',
+      'Hotspots: Hawaiian–Emperor chain records a bend ~47 Ma indicating plate motion change.'
     ],
     events: [
       '2011 Tōhoku earthquake and tsunami (Japan).',
-      '1960 Valdivia earthquake (Chile), the largest instrumentally recorded earthquake.'
+      '1960 Valdivia earthquake (Chile), the largest instrumentally recorded earthquake.',
+      '1994 Kuril–Kamchatka and frequent megathrust events along subduction margins.'
     ]
   },
   eurasian: {
     name: 'Eurasian Plate',
     description: 'Spans Europe and much of Asia; collides with the Indian portion of the Indo‑Australian Plate forming the Himalayas.',
-    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop',
     facts: [
-      'Hosts complex boundaries from the Atlantic to the Pacific.',
-      'Includes both continental and oceanic crust segments.',
-      'Active collision with Indian Plate uplifts the Himalayas.'
+      'Hosts complex boundaries from the Atlantic to the Pacific, including collision and transform segments.',
+      'Includes both continental and oceanic crust (e.g., parts of the North Atlantic seafloor).',
+      'Active collision with Indian Plate uplifts the Himalayas and thickens the Tibetan Plateau.',
+      'Alpine–Himalayan seismic belt stretches from the Mediterranean through the Middle East to SE Asia.',
+      'Major rift systems include the Baikal Rift and back‑arc basins in the western Pacific.'
     ],
     events: [
-      'Historic earthquakes in Turkey and Iran along the Alpine–Himalayan belt.',
-      'Ongoing uplift of the Tibetan Plateau.'
+      'Historic earthquakes in Türkiye, Iran, and the Mediterranean region.',
+      'Ongoing uplift and crustal shortening across the Himalaya and Tibet.'
     ]
   },
   'north-american': {
     name: 'North American Plate',
     description: 'Extends across North America and parts of the Atlantic seafloor; interacts with the Pacific Plate along the San Andreas Fault.',
-    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1600&auto=format&fit=crop',
     facts: [
-      'Transform boundary with the Pacific Plate (San Andreas Fault).',
-      'Divergent boundary with Eurasian Plate at the Mid‑Atlantic Ridge.',
-      'Includes the Caribbean and Juan de Fuca interactions along its margins.'
+      'Transform boundary with the Pacific Plate (San Andreas Fault and related strands).',
+      'Divergent boundary with Eurasian Plate at the Mid‑Atlantic Ridge; new oceanic crust forms.',
+      'Subduction zones to the northwest (Cascadia) and interactions with microplates (Juan de Fuca).',
+      'Intraplate hotspots such as Yellowstone influence volcanism and geothermal systems.',
+      'Seismic zones include New Madrid and eastern Canada intraplate regions.'
     ],
     events: [
       '1906 San Francisco earthquake.',
+      '1985–present Cascade subduction zone studies; episodic tremor and slip in the Pacific Northwest.',
       '2020 Puerto Rico earthquake sequence.'
     ]
   },
   african: {
     name: 'African Plate',
     description: 'Covers Africa and surrounding oceanic crust; features the East African Rift where the continent is slowly splitting.',
-    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1600&auto=format&fit=crop',
     facts: [
-      'Hosts the East African Rift System (divergent).',
-      'Convergent boundaries with Eurasian Plate forming the Mediterranean orogens.',
-      'Includes hotspots such as the Canary and Réunion.'
+      'Hosts the East African Rift System (divergent) with rift valleys and active volcanoes (Nyiragongo, Erta Ale).',
+      'Convergent boundaries with the Eurasian Plate forming the Mediterranean orogens and subduction.',
+      'Includes hotspots such as the Canary, Réunion, and Afar plume influence.',
+      'South Atlantic spreading separates Africa from South America along the Mid‑Atlantic Ridge.',
+      'Complex microplate interactions in the Mediterranean (Anatolian, Aegean).'
     ],
     events: [
       'Historic Mediterranean quakes (e.g., 1908 Messina).',
-      'Volcanism along the East African Rift (Nyiragongo, Erta Ale).'
+      'Rifting episodes and volcanism along the East African Rift.'
     ]
   },
   'indo-australian': {
     name: 'Indo‑Australian Plate',
     description: 'A major plate comprising the Indian and Australian segments; collision with Eurasia raised the Himalayas and Tibetan Plateau.',
-    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1600&auto=format&fit=crop',
     facts: [
-      'Subduction along the Sunda Trench near Indonesia.',
-      'Hosts powerful megathrust earthquakes.',
-      'Moves generally northward relative to Eurasia.'
+      'Subduction along the Sunda Trench near Indonesia drives frequent megathrust earthquakes.',
+      'Indian segment collides with Eurasia; Australian segment interacts with Pacific microplates.',
+      'Northward motion at several cm/yr; GPS reveals differential motions within the plate.',
+      'Back‑arc basins and complex trench‑arc systems in Indonesia and the Banda Sea.',
+      'Tsunami hazards around the eastern Indian Ocean margins.'
     ],
     events: [
       '2004 Indian Ocean earthquake and tsunami.',
-      '2015 Nepal earthquake (Gorkha).'
+      '2015 Nepal earthquake (Gorkha).',
+      '2018 Sulawesi events along complex strike‑slip systems.'
     ]
   },
   antarctic: {
     name: 'Antarctic Plate',
     description: 'Centered on Antarctica and surrounded by mid‑ocean ridges; one of the most stable plates, moving slowly outward from the continent.',
-    image: 'https://images.unsplash.com/photo-1722286031687-bf1aac49eb6b?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxJbmRvJUUyJTgwJTkxQXVzdHJhbGlhbiUyMFBsYXRlfGVufDB8MHx8fDE3NjM1NjkyOTh8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1515900161-cb3e1d7049f4?q=80&w=1600&auto=format&fit=crop',
     facts: [
-      'Encircled by spreading centers (divergent boundaries).',
-      'Interacts with the Scotia and South American Plates in the south Atlantic.',
-      'Cold climate limits on‑land erosion compared with other continents.'
+      'Encircled by spreading centers (divergent boundaries) such as the Southeast Indian Ridge.',
+      'Interacts with the Scotia and South American Plates in the South Atlantic region.',
+      'Cold climate limits on‑land erosion compared with other continents; ice load influences isostasy.',
+      'Generally low seismicity compared to subduction‑dominated margins.',
+      'Volcanic activity includes Mount Erebus and sub‑ice volcanic features.'
     ],
     events: [
       'Frequent small to moderate offshore earthquakes.',
-      'Volcanic activity at Mount Erebus (Ross Island).'
+      'Persistent activity at Mount Erebus (Ross Island).'
     ]
   }
 }

@@ -19,6 +19,18 @@ const QUESTIONS = [
     answer: 2,
     exp: 'It is a transform fault between the Pacific Plate and North American Plate.'
   },
+  {
+    q: 'Which boundary is most associated with deep ocean trenches?',
+    choices: ['Transform', 'Convergent (subduction)', 'Divergent', 'Hotspot'],
+    answer: 1,
+    exp: 'Subduction at convergent margins forms deep trenches (e.g., Mariana Trench).'
+  },
+  {
+    q: 'What geologic feature typically forms at divergent boundaries in oceans?',
+    choices: ['Fold‑and‑thrust belts', 'Volcanic arcs', 'Mid‑ocean ridges', 'Accretionary prisms'],
+    answer: 2,
+    exp: 'Sea‑floor spreading at mid‑ocean ridges creates new basaltic crust.'
+  },
 ]
 
 export default function Quiz() {

@@ -9,22 +9,28 @@ export default function PlatePage({ name, description, facts, events, image }) {
           <p className="text-slate-300 max-w-3xl">{description}</p>
         </div>
       </header>
+
       <div className="grid md:grid-cols-3 gap-6">
-        <div className="md:col-span-2">
+        <div className="md:col-span-2 space-y-4">
           <img src={image} alt={`${name} map`} className="w-full rounded-xl border border-amber-400/20" />
-        </div>
-        <div className="space-y-4">
           <section className="rounded-xl border border-amber-400/20 p-4 bg-slate-900/40">
-            <h3 className="font-semibold text-amber-300">Key Facts</h3>
+            <h3 className="font-semibold text-amber-300">Plate profile</h3>
             <ul className="list-disc list-inside text-slate-200 text-sm mt-2 space-y-1">
               {facts.map((f, i) => <li key={i}>{f}</li>)}
             </ul>
           </section>
+        </div>
+        <div className="space-y-4">
           <section className="rounded-xl border border-amber-400/20 p-4 bg-slate-900/40">
             <h3 className="font-semibold text-amber-300">Notable Events</h3>
             <ul className="list-disc list-inside text-slate-200 text-sm mt-2 space-y-1">
               {events.map((e, i) => <li key={i}>{e}</li>)}
             </ul>
+          </section>
+
+          <section className="rounded-xl border border-amber-400/20 p-4 bg-slate-900/40">
+            <h3 className="font-semibold text-amber-300">Study tips</h3>
+            <p className="text-sm text-slate-300">Remember to connect boundaries to hazards: divergent → volcanism and rifting; convergent → subduction, arcs, big quakes; transform → strike‑slip earthquakes.</p>
           </section>
         </div>
       </div>

@@ -9,6 +9,12 @@ const TERMS = [
   { term: 'Convergent boundary', def: 'Where plates move toward each other, causing subduction or mountain building.' },
   { term: 'Divergent boundary', def: 'Where plates move apart, forming new crust at mid‑ocean ridges.' },
   { term: 'Hotspot', def: 'A mantle plume that creates volcanic chains as a plate moves over it (e.g., Hawaiian Islands).' },
+  { term: 'Benioff zone', def: 'A dipping zone of earthquake foci tracing a subducting plate into the mantle.' },
+  { term: 'Accretionary prism', def: 'Sediments scraped off at a subduction trench and piled onto the overriding plate.' },
+  { term: 'Back‑arc basin', def: 'A sea or basin that forms behind a volcanic arc due to extension above a subduction zone.' },
+  { term: 'Orogeny', def: 'A mountain‑building event, commonly at convergent plate boundaries (e.g., Himalaya).' },
+  { term: 'Isostasy', def: 'Gravitational equilibrium of Earth’s crust floating on the mantle; explains uplift and subsidence.' },
+  { term: 'Paleomagnetism', def: 'Record of Earth’s magnetic field in rocks; key evidence for seafloor spreading.' },
 ]
 
 export default function Glossary() {
